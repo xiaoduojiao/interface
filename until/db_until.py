@@ -31,33 +31,10 @@ class DBUtil:
         cursor.execute(sql)
         self.connect.commit()
         cursor.close()
+
     def close(self):
         if self.connect!=None:
             self.connect.close()
-
-def wait_and_check_exist(db_util_cus,sql,timeout):
-    '''等待查询结果返回，超时时间自定义'''
-    start_time = time.time()
-    print(sql)
-    while len(db_util_cus.select(sql)) == 0:
-        if time.time() - start_time >= timeout:
-            print(f"超出等待时间:{sql}")
-            return False
-        time.sleep(1)  # 每次休眠 1 秒
-    # print(f"查询成功")
-    return db_util_cus.select(sql)
-
-def wait_and_check_key(db_util_cus,sql,key,value,timeout):
-    '''等待查询结果返回，超时时间自定义'''
-    start_time = time.time()
-    print(sql)
-    while db_util_cus.select(sql)[0][key] != value:
-        if time.time() - start_time >= timeout:
-            print(f"超出等待时间:{sql}")
-            return False
-        time.sleep(1)  # 每次休眠 1 秒
-    # print(f"查询成功")
-    return db_util_cus.select(sql)
 
 if __name__ == '__main__':
     pass
