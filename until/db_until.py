@@ -60,20 +60,4 @@ def wait_and_check_key(db_util_cus,sql,key,value,timeout):
     return db_util_cus.select(sql)
 
 if __name__ == '__main__':
-    # db_util = DBUtil(host='121.42.15.146',user='root',password='Testfan#123')
-    # for i in range(5):
-    #     time.sleep(10)
-    #     res = db_util.select('select * from mtxshop_trade.es_order order by order_id desc limit 2')
-    #     print(res)
-    # db_util.close()
-    from until.json_util import extract_json
-
-    db_util = DBUtil(host='10.9.15.251', user='customer_rw', password='BkEN_V0_7TN_afz9Ryd')
-
-    check_sql = f"select * from customer.t_customer_application_callback \
-                         where json like '%1681449829%';"
-    res = db_util.select(check_sql)
-    print(res)
-    code = extract_json(res,'$..code')
-    print(code)
-    db_util.close()
+    pass
